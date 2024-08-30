@@ -14,6 +14,12 @@ router.post('/signup', async (req, res) => {
             lastname,
             password,
             email,
+            zipcode,
+            agreeToTerms,
+            WhatPriceOrWillingToPay,
+            DoYouOwnOrRentalProperty,
+            DoYouOwnStockesOrBoundsOrCrypto,
+            Typeofemployeement,
         } = req.body;
 
         // Check if the user already exists
@@ -32,6 +38,12 @@ router.post('/signup', async (req, res) => {
             lastname,
             password: hashedPassword,
             email,
+            zipcode,
+            agreeToTerms,
+            WhatPriceOrWillingToPay,
+            DoYouOwnOrRentalProperty,
+            DoYouOwnStockesOrBoundsOrCrypto,
+            Typeofemployeement,
             token
         });
 
@@ -92,7 +104,7 @@ router.post("/forgot-password", async (req, res) => {
                   service: 'gmail',
                   auth: {
                     user: process.env.MAIL_USERNAME,
-                    pass: process.env.MAIL_PASSWOR
+                    pass: process.env.MAIL_PASSWORD
                   }
                 });
                 var mailOptions = {
@@ -101,7 +113,7 @@ router.post("/forgot-password", async (req, res) => {
                 subject:"password reset",
                 html:`
                 <h2>'You are receiving this because you (or someone else) have requested the reset of the password for your account.</br> Please click on the following link, or paste this into your browser to complete the process'</h2>
-                <a style="background-color: #f44336; color: white; padding: 14px 25px; text-align: center; text-decoration: none; display: inline-block;" href=https://localhost:3000/auth/reset-password/${token}>Reset Password</a>
+                <a style="background-color: #f44336; color: white; padding: 14px 25px; text-align: center; text-decoration: none; display: inline-block;" href=http://localhost:3001/resetpassword/${token}>Reset Password</a>
                 `
                 };
                 transporter.sendMail(mailOptions, function(error, info) {
